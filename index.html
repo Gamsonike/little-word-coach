@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fffaf0">
+    <meta name="description" content="A cheerful little spelling and pronunciation practice for growing readers.">
+    <title>Little Word Coach — word by word, you grow</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Little Word Coach home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none">
+              <path d="M5 10.5c5.8-2.2 10.7-1.6 15 1.8v21c-4.3-3.4-9.2-4-15-1.8v-21Z" fill="#FFF8D9" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/>
+              <path d="M35 10.5c-5.8-2.2-10.7-1.6-15 1.8v21c4.3-3.4 9.2-4 15-1.8v-21Z" fill="#E8E2FF" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/>
+              <path d="M10 17h5M10 22h5M25 17h5M25 22h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="m27.4 4.5.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z" fill="#F6A947"/>
+            </svg>
+          </span>
+          <span class="brand-name">little word <span>coach</span></span>
+        </a>
+        <div class="topbar-note">
+          <span class="sun-icon" aria-hidden="true">✦</span>
+          <span>A little practice, a big win</span>
+        </div>
+        <button class="how-button" id="how-to-play" type="button">
+          <span class="help-icon" aria-hidden="true">?</span>
+          How to play
+        </button>
+      </header>
+
+      <main>
+        <section class="welcome-row" aria-labelledby="welcome-heading">
+          <div class="welcome-copy">
+            <p class="eyebrow"><span class="sparkle" aria-hidden="true">✳</span> YOUR COZY CORNER FOR WORDS</p>
+            <h1 id="welcome-heading">Ready to make<br><span>some word magic?</span></h1>
+            <p class="welcome-description">Listen, think, and spell your way through today’s little adventure.</p>
+          </div>
+          <div class="welcome-art" aria-hidden="true">
+            <span class="art-sun">✹</span>
+            <span class="art-star art-star-one">✦</span>
+            <span class="art-star art-star-two">✧</span>
+            <span class="art-book">📖</span>
+            <span class="art-pencil">✎</span>
+            <span class="art-caption">you’ve got this!</span>
+          </div>
+        </section>
+
+        <section class="practice-layout" aria-label="Spelling practice">
+          <article class="practice-card" aria-labelledby="practice-title">
+            <div class="card-topline">
+              <div class="lesson-label"><span class="lesson-dot"></span> TODAY’S WORD ADVENTURE</div>
+              <span class="word-counter" id="word-counter">WORD 1 <span>/ 8</span></span>
+            </div>
+
+            <div class="progress-track" role="progressbar" aria-label="Words completed" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0" id="progress-track">
+              <span class="progress-fill" id="progress-fill"></span>
+              <span class="progress-sparkle" aria-hidden="true">✦</span>
+            </div>
+
+            <div class="prompt-area">
+              <div class="listen-orb" aria-hidden="true">
+                <span class="orb-sparkle">✦</span>
+                <svg viewBox="0 0 64 64" fill="none">
+                  <path d="M12 25v14h11l14 11V14L23 25H12Z" fill="currentColor" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+                  <path d="M46 23c3 2.3 5 5.3 5 9s-2 6.7-5 9M51 17c5 3.8 8 8.9 8 15s-3 11.2-8 15" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h2 id="practice-title">What’s the word?</h2>
+              <p class="prompt-description">Tap to listen, then spell what you hear.</p>
+              <div class="listen-actions">
+                <button class="listen-button" id="listen-button" type="button">
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8v4h3l4 3V5L6 8H3Z" fill="currentColor"/><path d="M13 7.5a3.5 3.5 0 0 1 0 5M14.8 5a7 7 0 0 1 0 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                  Listen to the word
+                </button>
+                <button class="sentence-button" id="sentence-button" type="button">
+                  <span aria-hidden="true">↗</span> Hear it in a sentence
+                </button>
+              </div>
+              <p class="audio-notice" id="audio-notice" hidden></p>
+            </div>
+
+            <form class="answer-form" id="answer-form" novalidate>
+              <label for="answer-input">Your spelling</label>
+              <div class="input-wrap">
+                <input id="answer-input" name="answer" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Type your word here..." aria-describedby="answer-feedback">
+                <span class="input-decoration" aria-hidden="true">✎</span>
+              </div>
+              <p class="feedback" id="answer-feedback" aria-live="polite"></p>
+              <div class="form-actions">
+                <button class="hint-button" id="hint-button" type="button"><span aria-hidden="true">✦</span> Give me a hint</button>
+                <button class="check-button" id="check-button" type="submit">
+                  Check my spelling <span aria-hidden="true">→</span>
+                </button>
+                <button class="check-button next-button" id="next-button" type="button" hidden>
+                  Next word <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </form>
+
+            <div class="card-footer">
+              <span class="kind-note"><span aria-hidden="true">🌱</span> Every try helps your brain grow</span>
+              <span class="keyboard-note">Press <kbd>Enter</kbd> to check</span>
+            </div>
+          </article>
+
+          <aside class="side-column" aria-label="Your practice progress">
+            <section class="streak-card">
+              <div class="streak-header">
+                <span class="streak-icon" aria-hidden="true">🔥</span>
+                <span class="streak-label">YOUR BRIGHT START</span>
+              </div>
+              <p class="streak-number"><span id="score-count">0</span><span class="streak-total"> / 8</span></p>
+              <p class="streak-caption">words spelled correctly</p>
+              <div class="score-dots" id="score-dots" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="streak-message"><span aria-hidden="true">✨</span> You’re off to a lovely start!</div>
+            </section>
+
+            <section class="coach-card">
+              <div class="coach-face" aria-hidden="true">
+                <span class="coach-cheek cheek-left"></span>
+                <span class="coach-eye eye-left"></span>
+                <span class="coach-eye eye-right"></span>
+                <span class="coach-smile"></span>
+                <span class="coach-leaf">✦</span>
+              </div>
+              <p class="coach-quote" id="coach-quote">“Take your time. You can listen as many times as you like!”</p>
+              <span class="coach-signature">— your word coach</span>
+            </section>
+
+            <div class="tiny-tip">
+              <span class="tip-icon" aria-hidden="true">💡</span>
+              <p><strong>Little tip</strong><br>Say the sounds slowly in your head. You’ve got this!</p>
+            </div>
+          </aside>
+        </section>
+      </main>
+
+      <footer class="page-footer">
+        <span>Made for curious minds <span aria-hidden="true">♡</span></span>
+        <span>One word at a time</span>
+      </footer>
+    </div>
+
+    <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title">
+      <form method="dialog">
+        <button class="dialog-close" aria-label="Close how to play">×</button>
+        <span class="dialog-icon" aria-hidden="true">🌟</span>
+        <p class="eyebrow">YOU’RE THE WORD WIZARD</p>
+        <h2 id="help-title">How to play</h2>
+        <ol>
+          <li><span>1</span> Tap <strong>Listen to the word</strong>. You can listen again anytime.</li>
+          <li><span>2</span> Type the word you hear. Need a nudge? Try a hint.</li>
+          <li><span>3</span> Check your spelling, celebrate, and move on to the next word!</li>
+        </ol>
+        <button class="check-button dialog-got-it" type="submit">Got it! <span aria-hidden="true">→</span></button>
+      </form>
+    </dialog>
+  </body>
+</html>
